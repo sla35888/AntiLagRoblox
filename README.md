@@ -17,7 +17,7 @@ pcall(runQueue)
 
 local localPlayer = Players.LocalPlayer or Players:GetPropertyChangedSignal("LocalPlayer"):Wait() and Players.LocalPlayer
 
-local function destroyEffect(obj)
+local function destroyEffect(obj: Instance)
 	if not obj or not obj.Parent then return end
 	if obj:IsA("ParticleEmitter") or obj:IsA("Trail") or obj:IsA("Beam") or obj:IsA("Fire") or obj:IsA("Smoke") or obj:IsA("Sparkles") or obj:IsA("Explosion") or obj:IsA("Highlight") or obj:IsA("PostEffect") or obj:IsA("PointLight") or obj:IsA("SurfaceLight") or obj:IsA("SpotLight") then
 		pcall(function() obj:Destroy() end)
@@ -52,7 +52,7 @@ local function cleanAvatar(character)
 	end
 end
 
-local function optimizeCharacter(character)
+local function optimizeCharacter(character: Model)
 	cleanAvatar(character)
 	
 	if character ~= localPlayer.Character then
@@ -122,7 +122,7 @@ Players.PlayerAdded:Connect(function(player)
 	player.CharacterAdded:Connect(optimizeCharacter)
 end)
 
-local function clearLighting(parent)
+local function clearLighting(parent: Instance)
 	for _, child in ipairs(parent:GetChildren()) do
 		if child:IsA("Sky") or child:IsA("Atmosphere") or child:IsA("Clouds") or child:IsA("PostEffect") or child:IsA("PointLight") or child:IsA("SurfaceLight") or child:IsA("SpotLight") then
 			pcall(function() child:Destroy() end)
