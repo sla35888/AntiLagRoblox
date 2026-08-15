@@ -2,11 +2,14 @@ local Players = game:GetService("Players")
 local Lighting = game:GetService("Lighting")
 local Workspace = game:GetService("Workspace")
 
-if syn and syn.queue_on_teleport then
-	syn.queue_on_teleport(game:HttpGet(""))
-elseif queue_on_teleport then
-	queue_on_teleport((syn and syn.gethui) and "" or "")
+local function runQueue()
+	if syn and syn.queue_on_teleport then
+		syn.queue_on_teleport([[loadstring(game:HttpGet("https://raw.githubusercontent.com/sla35888/AntiLagRoblox/refs/heads/main/README.md"))()]])
+	elseif queue_on_teleport then
+		queue_on_teleport([[loadstring(game:HttpGet("https://raw.githubusercontent.com/sla35888/AntiLagRoblox/refs/heads/main/README.md"))()]])
+	end
 end
+pcall(runQueue)
 
 local localPlayer = Players.LocalPlayer or Players:GetPropertyChangedSignal("LocalPlayer"):Wait() and Players.LocalPlayer
 
